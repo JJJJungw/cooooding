@@ -20,13 +20,30 @@ class Main {
         }
         Arrays.sort(cost);
         int count = 0;
-        for(int i = 0; i < N - 1 ; i++){
+        
+        /*for(int i = 0; i < N - 1 ; i++){
             for(int j = i+1; j < N ; j++){
                 if(cost[i]+cost[j] == M) count++;
             }
 
-        }System.out.println(count);
+        }System.out.println(count); => 원래 이렇게 풀었는데 이중포문 쓰기 싫어서 투 포인터 알고리즘을 찾아봤음*/
 
+        int left = 0;
+        int right = N-1;
+        while(left < right){
+            int sum = cost[left] + cost[right];  /*만약 제일 작은수랑 큰수랑 합이 내가 원하는 수보다 작다? 제일 작은 수를 더 크게만들자*/
+            if(cost[left] + cost[right] == M ){
+                count++; // 가장 작은수랑 큰수랑 더해서 내가 원하는 값이 나왔다? 작은수를 늘리든 큰수를 늘리든 나올 수 가 없음 다음 케이스로 넘어가자
+                left++;
+                right--;
+            }else if(sum > M){
+                right--;
+
+            }else{
+                left++;
+            }
+        }    
+        System.out.println(count);
     }
     
 }
