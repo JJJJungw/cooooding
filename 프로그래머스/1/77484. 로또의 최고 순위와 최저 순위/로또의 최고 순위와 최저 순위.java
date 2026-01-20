@@ -28,7 +28,7 @@ class Solution {
 
         return answer;
     }
-
+    
     private int rank(int match) {
         switch (match) {
             case 6: return 1;
