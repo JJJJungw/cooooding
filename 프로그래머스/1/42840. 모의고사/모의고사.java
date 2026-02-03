@@ -1,30 +1,26 @@
-import java.util.*;
-class Solution {
-    public int[] solution(int[] answers) {
-        int[] A = {1,2,3,4,5};
-        int[] B = {2, 1, 2, 3, 2, 4, 2, 5};
-        int[] C = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-        int[] cnt = new int[3];
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i] == A[i % A.length]) cnt[0]++;
-            if (answers[i] == B[i % B.length]) cnt[1]++;
-            if (answers[i] == C[i % C.length]) cnt[2]++;
-        }
-        int max = Math.max(cnt[0],Math.max(cnt[1],cnt[2]));
-        List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            if(cnt[i] == max) {
-                list.add(i+1);
-            }
-        }
-        int[] answer = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
-        }
 
-        return answer;
+import java.util.ArrayList;
+class Solution {
+    public int[] solution(int[] answer) {
+        int[] a = {1, 2, 3, 4, 5};
+        int[] b = {2, 1, 2, 3, 2, 4, 2, 5};
+        int[] c = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        int[] score = new int[3];
+        for(int i=0; i<answer.length; i++) {
+            if(answer[i] == a[i%a.length]) {score[0]++;}
+            if(answer[i] == b[i%b.length]) {score[1]++;}
+            if(answer[i] == c[i%c.length]) {score[2]++;}
+        }
+        int maxScore = Math.max(score[0], Math.max(score[1], score[2]));
+        ArrayList<Integer> list = new ArrayList<>();
+        if(maxScore == score[0]) {list.add(1);}
+        if(maxScore == score[1]) {list.add(2);}
+        if(maxScore == score[2]) {list.add(3);}
+        
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+        result[i] = list.get(i);
+        }
+        return result;
     }
 }
-
-
-    
